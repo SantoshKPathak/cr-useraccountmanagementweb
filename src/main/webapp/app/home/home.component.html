@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <!--    <div class="col-md-3">-->
+    <!--        <span class="hipster img-fluid rounded"></span>-->
+    <!--    </div>-->
+    <div class="col-xs-12 col-sm-10 col-md-6 col-sm-offset-1 col-md-offset-2">
+      <!-- <h1 class="display-4">Welcome, CareRadius User!</h1> -->
+
+      <!-- <div [ngSwitch]="isAuthenticated()"> -->
+      <!-- <div class="alert alert-success" *ngSwitchCase="true">
+          <span id="home-logged-message" *ngIf="account">You are logged in as user "{{ account.login }}".</span>
+        </div> -->
+
+      <!-- <div class="alert alert-warning" *ngSwitchCase="false">
+          <span>If you want to </span>
+          <a class="alert-link" (click)="login()">sign in</a
+          ><span
+            >, you can try the default accounts:<br />- Administrator (login="admin" and password="admin") <br />- User (login="user" and
+            password="user").</span
+          >
+        </div> -->
+
+      <!-- <div class="alert alert-warning" *ngSwitchCase="false">
+          <span>You don't have an account yet?</span>&nbsp;
+          <a class="alert-link" routerLink="account/register">Register a new account</a>
+        </div> -->
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <div class="col-8">
+        <form name="userAccountForm" role="form" novalidate (ngSubmit)="activate()" [formGroup]="userAccountForm">
+          <!-- <h2 id="jhi-usr-user-heading">User Account can be activated here!!</h2> -->
+
+          <div>
+            <div class="form-group">
+              <label class="form-control-label" for="field_usrId">User Id/Emp Id</label>
+              <input
+                type="text"
+                class="form-control"
+                name="usrId"
+                id="field_usrId"
+                formControlName="usrId"
+                placeholder="C12345 or 654321"
+                maxlength="10"
+              />
+              <div
+                *ngIf="
+                  userAccountForm.get('usrId')!.invalid && (userAccountForm.get('usrId')!.dirty || userAccountForm.get('usrId')!.touched)
+                "
+              >
+                <!-- <small class="form-text text-danger" *ngIf="userAccountForm.get('usrId').length === 0"
+                  >Blank/Empty UserId is not allowed.</small
+                > -->
+                <small class="form-text text-danger"> User Id is required. </small>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <button type="button" id="cancel-save" class="btn btn-secondary" (click)="onReset()">
+              <fa-icon icon="ban"></fa-icon>&nbsp;<span>Reset</span>
+            </button>
+
+            <button type="submit" id="save-entity" [disabled]="userAccountForm.invalid || isSaving" class="btn btn-primary">
+              <fa-icon icon="save"></fa-icon>&nbsp;<span>Activate</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
